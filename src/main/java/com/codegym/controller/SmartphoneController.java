@@ -1,14 +1,12 @@
 package com.codegym.controller;
 
-
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@Controller("/")
+@Controller
 public class SmartphoneController{
     @GetMapping("/")
-    public String showForm(Model model) {
+    public String showIndex() {
         return "index";
     }
 }
