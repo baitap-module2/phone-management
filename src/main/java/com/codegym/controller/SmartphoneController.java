@@ -13,12 +13,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping(value = "/smartphones")
-public class SmartphoneController{
+public class SmartphoneController {
     @Autowired
     private SmartphoneService smartphoneService;
 
-//    thêm
-    @RequestMapping(value = ("/create"),method = RequestMethod.GET)
+    //    thêm
+    @RequestMapping(value = ("/create"), method = RequestMethod.GET)
     public ModelAndView createSmartphonePage() {
         ModelAndView modelAndView = new ModelAndView("/new-phone");
         modelAndView.addObject("sPhone", new Smartphone());
