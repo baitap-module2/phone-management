@@ -4,6 +4,37 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>List Smartphone</title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <!--delete a smartphone-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var deleteLink = $("a:contains('Delete')");
+            $(deleteLink).click(function (event) {
+                $.ajax({
+                    url: $(event.target).attr("href"),
+                    type: "POST",
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("Accept", "application/json");
+                        xhr.setRequestHeader("Content-Type", "application/json");
+                    },
+                    success: function (smartphone) {
+                        var respContent = "";
+                        var rowToDelete = $(event.target).closest("tr");
+                        rowToDelete.remove();
+                        respContent += "<span class='success'>Smartphone was deleted: [";
+                        respContent += smartphone.producer + " : ";
+                        respContent += smartphone.model + " : ";
+                        respContent += smartphone.price + "]</span>";
+                        $("#sPhoneFromResponse").html(respContent);
+                    }
+                });
+
+                event.preventDefault();
+            });
+
+        });
+    </script>
+
 </head>
 <body>
 <div id="container">
