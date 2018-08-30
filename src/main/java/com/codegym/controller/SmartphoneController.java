@@ -44,4 +44,22 @@ public class SmartphoneController {
         modelAndView.addObject("allphones", allPhones());
         return modelAndView;
     }
+
+    //    sửa
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public ModelAndView editSmartphonePage(@PathVariable int id) {
+        ModelAndView modelAndView = new ModelAndView("/edit-phone");
+        Smartphone smartphone = smartphoneService.findById(id);
+        modelAndView.addObject("sPhone", smartphone);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Smartphone editSmartphone(@PathVariable int id,
+                                     @RequestBody Smartphone smartphone) {
+        smartphone.setId(id);
+        return smartphoneService.save(smartphone);
+    }
 }
