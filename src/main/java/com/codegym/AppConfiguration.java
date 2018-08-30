@@ -1,5 +1,7 @@
 package com.codegym;
 
+import com.codegym.service.SmartphoneService;
+import com.codegym.service.SmartphoneServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -43,6 +45,11 @@ public class AppConfiguration extends WebMvcConfigurerAdapter implements Applica
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext=applicationContext;
+    }
+
+    @Bean
+    public SmartphoneService smartphoneService() {
+        return new SmartphoneServiceImpl();
     }
 
     //Thymeleaf Configuration
